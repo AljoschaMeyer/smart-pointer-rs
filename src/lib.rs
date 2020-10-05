@@ -1,6 +1,6 @@
-//! Traits for smart pointer functionality, i.e. shared ownership of values.
+//! Traits for smart pointer functionality.
 //!
-//! The basic traits are `SmartPointer` and `SmartPointerMut` for basic creation, cloning,
+//! The basic traits are `SmartPointer` and `SmartPointerMut` for basic creation,
 //! obtaining ownership, borrowing and dereferencing. Further subtraits expose more specialized
 //! functionality which is nonetheless applicable to any sort of smart pointer.
 //!
@@ -19,7 +19,7 @@ use base::borrow::{Borrow, BorrowMut};
 use base::ops::{Deref, DerefMut};
 use base::fmt::Pointer;
 
-/// The minimum amount of functionality common to all smart pointer types sharing ownership of a
+/// The minimum amount of functionality common to all smart pointer types pointing to a
 /// value of type `T`. This trait only grants immutable access to the stored value, see
 /// `SmartPointerMut` for mutable access and `TryIntoMut` for fallible conversion into a mutable
 /// variant.
@@ -29,11 +29,11 @@ use base::fmt::Pointer;
 /// Also note that this trait omits some functionality because it can only be expressed with
 /// higher-kinded types, such as working with uninitialized memory, conversions to slices,
 /// downcasting of `Any` values.
-pub trait SmartPointer<T: ?Sized>: Sized + Clone + AsRef<T> + Borrow<T> + Deref<Target = T> + Pointer
+pub trait SmartPointer<T: ?Sized>: Sized + AsRef<T> + Borrow<T> + Deref<Target = T> + Pointer
 // + CoerceUnsized<Ptr<U>> + DispatchFromDyn<Rc<U>> where T: Unsize<U>, U: ?Sized
 {
     /// Construct a new smart pointer, containing the given value.
-    fn new(t: T) -> Self;
+    fn new(t: T) -> Self where T: Sized;
 
     /// Try to obtain ownership of the wrapped value.
     ///
