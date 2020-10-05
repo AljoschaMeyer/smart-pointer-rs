@@ -1,0 +1,18 @@
+[package]
+name = "smart-pointer"
+description = "Traits for smart pointer functionality, i.e. shared ownership of values."
+repository = "https://github.com/AljoschaMeyer/smart-pointer-rs"
+version = "0.1.0"
+authors = ["Aljoscha Meyer <mail@aljoscha-meyer.de>"]
+edition = "2018"
+license = "CC-PDDC"
+
+[features]
+default = []
+
+alloc = [ "maybe-std/alloc" ]
+std = [ "maybe-std/std" ]
+# unstable = [ "maybe-std/unstable" ]
+
+[dependencies]
+maybe-std = "0.1.0"
