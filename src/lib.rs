@@ -39,6 +39,13 @@ pub trait SmartPointer<T: ?Sized>: Sized + AsRef<T> + Borrow<T> + Deref<Target =
     ///
     /// This fails if there are other smart pointers wrapping the exact same value.
     fn try_unwrap(this: Self) -> Result<T, Self> where T: Sized;
+
+    /// Returns whether two smart pointers point to the same location in memory.
+    ///
+    /// The default implementation borrows the inner values and compares their locations.
+    fn ptr_eq(a: Self, b: Self) -> bool {
+        base::ptr::eq(a.borrow(), b.borrow())
+    }
 }
 
 /// A `SmartPointer` which beyond immutable access to the wrapped value also provides mutable

@@ -4,4 +4,4 @@ A rust module specifying traits for smart pointer functionality, i.e. shared own
 
 See the module documentation for more details.
 
-Alternative: https://crates.io/crates/archery
+Note that the usage of this crate remains fairly restricted as long as rust does not support higher-kinded types. The [archery](https://crates.io/crates/archery) crate emulates higher-kinded smart pointers, but has a coarser interface than this crate.
