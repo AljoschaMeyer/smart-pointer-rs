@@ -43,7 +43,7 @@ pub trait SmartPointer<T: ?Sized>: Sized + AsRef<T> + Borrow<T> + Deref<Target =
     /// Returns whether two smart pointers point to the same location in memory.
     ///
     /// The default implementation borrows the inner values and compares their locations.
-    fn ptr_eq(a: Self, b: Self) -> bool {
+    fn ptr_eq(a: &Self, b: &Self) -> bool {
         base::ptr::eq(a.borrow(), b.borrow())
     }
 }

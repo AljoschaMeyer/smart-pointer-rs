@@ -2,7 +2,7 @@
 name = "smart-pointer"
 description = "Traits for smart pointer functionality."
 repository = "https://github.com/AljoschaMeyer/smart-pointer-rs"
-version = "0.1.1"
+version = "0.2.0"
 authors = ["Aljoscha Meyer <mail@aljoscha-meyer.de>"]
 edition = "2018"
 license = "CC-PDDC"
